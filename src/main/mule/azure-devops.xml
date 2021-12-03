@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="97f406ff-36ca-48d5-949e-da83e31e206a" >
+		<http:listener-connection host="0.0.0.0" port="8097" />
+	</http:listener-config>
+	<flow name="azure-devopsFlow" doc:id="5f247844-4141-4dd8-afb6-7cbd89368e5e" >
+		<http:listener doc:name="Listener" doc:id="6b25ce1d-3239-44ab-a107-4372ae48725d" config-ref="HTTP_Listener_config" path="/devops"/>
+		<set-payload value='"first project to deploy to cloudhub using cicid azure devops"' doc:name="Set Payload" doc:id="25ce2c70-ccf0-4cca-a721-4a4a89f2ad16" />
+		<logger level="INFO" doc:name="Logger" doc:id="0ff6363e-c892-4f80-aa0a-f9a1a2717efa" message="#[payload]"/>
+	</flow>
+</mule>
